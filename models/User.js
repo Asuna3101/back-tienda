@@ -1,43 +1,42 @@
-import { sequelize } from "../database/database.js";
-import { DataTypes } from "sequelize";
+const { Sequelize, DataTypes } = require ("sequelize");
 
-export const User = sequelize.define('User', {
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
-    },
-    username:{
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true
-    },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    lastname: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false, 
-    },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    rol: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      defaultValue: "USER",
-    },
-    state: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      defaultValue: "Active",
-    },
+const CADENA_CONEXION = 
+    "postgresql://postgres:asuna@3101@localhost:5432/postgres";
+
+const sequelize = new Sequelize(CADENA_CONEXION)
+
+//postgres://postgres:asuna@3101@localhost:5432/ejemplo
+
+
+
+const usuario = sequelize.define("usuarios",{
+  id: {
+    primaryKey: true,
+    type: DataTypes.UUID,
+    defaultValue: DataTypes.UUIDV4, // Corrected default value for UUID
+    allowNull: false
+  },
+  nombre : {
+      type : DataTypes.STRING(20),
+      allowNull : true
+  },
+  apellido : {
+      type : DataTypes.STRING(40),
+      allowNull : true
+  },
+  correo : {
+      type : DataTypes.STRING(40),
+      allowNull : false
+  },
+  password : {
+      type : DataTypes.STRING(40),
+      allowNull : false
+  }
 },{
-  timestamps: false,
-});
+  timestamps : false,
+  freezeTableName : true
+})
+
+module.exports = {
+  usuario, sequelize
+}
