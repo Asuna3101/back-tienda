@@ -1,2 +1,0 @@
-
-// Middleware para proteger rutas

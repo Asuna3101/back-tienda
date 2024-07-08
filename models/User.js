@@ -31,7 +31,12 @@ const usuario = sequelize.define("usuarios",{
   password : {
       type : DataTypes.STRING(40),
       allowNull : false
+  },
+  recovery_password : {
+    type : DataTypes.STRING(40),
+    allowNull : true
   }
+  
 },{
   timestamps : false,
   freezeTableName : true
