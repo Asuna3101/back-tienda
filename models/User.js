@@ -1,11 +1,26 @@
-const { Sequelize, DataTypes } = require ("sequelize");
+//const { Sequelize, DataTypes } = require ("sequelize");
 
-const CADENA_CONEXION = 
-    "postgresql://postgres:asuna@3101@localhost:5432/postgres";
+//const CADENA_CONEXION = 
+    //"postgresql://postgres:asuna@3101@postgres2024-1.postgres.database.azure.com:5432/postgresSQL";
+//postgresSQL
 
-const sequelize = new Sequelize(CADENA_CONEXION)
 
-//postgres://postgres:asuna@3101@localhost:5432/ejemplo
+
+//const sequelize = new Sequelize(CADENA_CONEXION)
+const { Sequelize,DataTypes } = require('sequelize');
+
+const sequelize = new Sequelize('postgresSQL', 'postgres', 'asuna@3101', {
+    host: 'postgres2024-1.postgres.database.azure.com',
+    dialect: 'postgres',
+    dialectOptions: {
+        ssl: {
+            require: true,
+            rejectUnauthorized: false 
+        }
+    }
+});
+
+
 
 
 
